@@ -2,12 +2,31 @@
 using FastEndpoints;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace PayYourChart.Module.Patient;
 
 // If your request object isn't going to be used by multiple 
 // endpoints, its ok to just declare it in the same file as the endpoint.
 internal record class CreatePatientRequest(string FirstName, string LastName, string SSN, DateTime? DateOfBirth);
+
+[HttpPost(ApiPath.Base)]
+[AllowAnonymous]
+[PostProcessor<CreatePatientExceptionProcessor>]
+internal class CreatePatient(IPatientService service) : Endpoint<CreatePatientRequest, PatientDto>
+{
+    readonly IPatientService _service = service;
+    readonly Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
+
+    public override async Task HandleAsync(CreatePatientRequest req, CancellationToken ct)
+    {
+        Patient patient = await _service.AddPatientAsync(req.FirstName, req.LastName, req.SSN, req.DateOfBirth);
+        await SendAsync(mapper.Map<PatientDto>(patient));
+    }
+}
+
+
+// Validators handle the input
 internal class CreatePatientValidator : Validator<CreatePatientRequest> 
 {
     public CreatePatientValidator() 
@@ -26,17 +45,34 @@ internal class CreatePatientValidator : Validator<CreatePatientRequest>
     }
 }
 
-
-[HttpPost(ApiPath.Base)]
-[AllowAnonymous]
-internal class CreatePatient(IPatientService service) : Endpoint<CreatePatientRequest, PatientDto>
+// Here we use what's called a post-processor to handle errors in a special way unique to our request
+internal class CreatePatientExceptionProcessor : IPostProcessor<CreatePatientRequest, PatientDto>
 {
-    readonly IPatientService _service = service;
-    readonly Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
-
-    public override async Task HandleAsync(CreatePatientRequest req, CancellationToken ct)
+    public async Task PostProcessAsync(IPostProcessorContext<CreatePatientRequest, PatientDto> ctx, CancellationToken ct = default)
     {
-        Patient patient = await _service.AddPatientAsync(req.FirstName, req.LastName, req.SSN, req.DateOfBirth);
-        await SendAsync(mapper.Map<PatientDto>(patient));
+        if (!ctx.HasExceptionOccurred)
+            return;
+
+        if (ctx.ExceptionDispatchInfo.SourceException.GetType() == typeof(DbUpdateException))
+        {
+            // Unique key violation
+            if (ctx.ExceptionDispatchInfo.SourceException.InnerException?.Message.Contains("UNIQUE", StringComparison.OrdinalIgnoreCase) ?? false) 
+            {
+                ctx.MarkExceptionAsHandled(); //only if handling the exception here.
+                await ctx.HttpContext.Response.SendAsync("Could not create patient. One with the SSN and DOB already exists.", 500);     
+                await ctx.HttpContext.Response.SendAsync(
+                    new InternalErrorResponse
+                    {
+                        Status = "Conflict",
+                        Code = 403,
+                        Reason = "Could not create patient. A patient with the SSN and DOB already exists.",
+                        Note = "A patient with the SSN and DOB already exists."
+                    });      
+                return;
+            }
+        }
+
+        ctx.ExceptionDispatchInfo.Throw();
     }
 }
+

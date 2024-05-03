@@ -13,12 +13,15 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddPatientModule();
 
 // Fast endpoints registration
-builder.Services.AddFastEndpoints()
+builder.Services
+    .AddFastEndpoints()
     .SwaggerDocument();
 
 var app = builder.Build();
 
-app.UseFastEndpoints()
+app
+    .UseDefaultExceptionHandler()
+    .UseFastEndpoints()
     .UseSwaggerGen();
 
 
