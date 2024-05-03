@@ -6,6 +6,8 @@ public static partial class PatientModuleExtensions
 {
     public static void AddPatientModule(this IServiceCollection services) 
     {
-        
+        services.AddDbContext<EfPatientContext>();
+        services.AddScoped<IPatientRepository, EfPatientRepository>();
+        services.AddScoped<IPatientService, PatientService>();
     }
 }
