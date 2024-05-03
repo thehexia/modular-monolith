@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PayYourChart.Module.Patient;
 
-[HttpGet("/api/patient/{id}")]
+[HttpGet($"{ApiPath.Base}/{{id}}")]
 [AllowAnonymous] // Temporarily allow this for testing
 internal class GetPatient : Endpoint<PatientByIdRequest, PatientDto>
 {
