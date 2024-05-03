@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart", "PayYourChart\PayYourChart.csproj", "{3C54379E-D9FA-4783-922C-60D7A8C8A42B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{290E2809-9F4A-4C2E-9657-E202DA08CCD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Patient", "modules\PayYourChart.Module.Patient\PayYourChart.Module.Patient.csproj", "{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C54379E-D9FA-4783-922C-60D7A8C8A42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C54379E-D9FA-4783-922C-60D7A8C8A42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C54379E-D9FA-4783-922C-60D7A8C8A42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C54379E-D9FA-4783-922C-60D7A8C8A42B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32AE82E2-4FE8-4F50-A1B6-1ED1F34598F4} = {290E2809-9F4A-4C2E-9657-E202DA08CCD4}
+	EndGlobalSection
+EndGlobal
