@@ -24,4 +24,13 @@ internal class EfPatientContext : DbContext
     // special "local" folder for your platform.
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={DbPath}");
+
+
+    // Some code first things
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Entity<Patient>()
+            .HasIndex(p => new { p.SSN, p.DateOfBirth })
+            .IsUnique();
+    }
 }

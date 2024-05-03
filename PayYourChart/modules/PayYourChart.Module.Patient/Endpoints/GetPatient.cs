@@ -15,6 +15,7 @@ internal class GetPatient : Endpoint<PatientByIdRequest, PatientDto>
             Id = req.Id,
             FirstName = "John",
             LastName = "Doe",
+            SSN = "123-45-6789",
             DateOfBirth = new DateTime(2020, 1, 1)
         });
     }

@@ -7,18 +7,22 @@ namespace PayYourChart.Module.Patient;
 
 // If your request object isn't going to be used by multiple 
 // endpoints, its ok to just declare it in the same file as the endpoint.
-internal record class CreatePatientRequest(string FirstName, string LastName, DateTime? DateOfBirth);
+internal record class CreatePatientRequest(string FirstName, string LastName, string SSN, DateTime? DateOfBirth);
 internal class CreatePatientValidator : Validator<CreatePatientRequest> 
 {
     public CreatePatientValidator() 
     {
         RuleFor(x => x.FirstName)
             .NotEmpty()
-            .WithMessage("First name must be given.");
+            .WithMessage("First name is required.");
 
         RuleFor(x => x.LastName)
             .NotEmpty()
-            .WithMessage("Last name must be given.");
+            .WithMessage("Last name is required.");
+
+        RuleFor(x => x.SSN)
+            .NotEmpty()
+            .WithMessage("SSN is required.");
     }
 }
 
@@ -32,7 +36,7 @@ internal class CreatePatient(IPatientService service) : Endpoint<CreatePatientRe
 
     public override async Task HandleAsync(CreatePatientRequest req, CancellationToken ct)
     {
-        Patient patient = await _service.AddPatientAsync(req.FirstName, req.LastName, req.DateOfBirth);
+        Patient patient = await _service.AddPatientAsync(req.FirstName, req.LastName, req.SSN, req.DateOfBirth);
         await SendAsync(mapper.Map<PatientDto>(patient));
     }
 }
