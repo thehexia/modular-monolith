@@ -8,7 +8,7 @@ namespace PayYourChart.Module.Item;
 internal record class GetItemByIdRequest(long Id);
 
 
-internal class GetItemById(IItemRepository item, IItemDtoMapperFactory mapper) : Endpoint<GetItemByIdRequest, ItemDto>
+internal class GetItem(IItemRepository item, IItemDtoMapperFactory mapper) : Endpoint<GetItemByIdRequest, ItemDto>
 {
     readonly IItemRepository _item = item;
     readonly IItemDtoMapperFactory _mapper = mapper;
