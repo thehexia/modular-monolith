@@ -42,5 +42,39 @@ internal class EfItemContext : DbContext
         builder.Entity<Item>()
             .HasIndex(i => i.ItemCode)
             .IsUnique();
+
+        #region Seed
+        builder.Entity<Item>().HasData(new Item() 
+        {
+            Id = 1,
+            ItemCode = "92507",
+            Price = 500.25m,
+            Description = "Speech/hearing therapy"
+        });
+
+        builder.Entity<Item>().HasData(new Item() 
+        {
+            Id = 2,
+            ItemCode = "92609",
+            Price = 205.75m,
+            Description = "Use of speech device service"
+        });
+
+        builder.Entity<Item>().HasData(new Item() 
+        {
+            Id = 3,
+            ItemCode = "93797",
+            Price = 12345.67m,
+            Description = "Cardiac rehab"
+        });
+
+        builder.Entity<Item>().HasData(new Item() 
+        {
+            Id = 4,
+            ItemCode = "93798",
+            Price = 789.10m,
+            Description = "Cardiac rehab/monitor"
+        });
+        #endregion
     }
 }
