@@ -6,6 +6,6 @@ public static partial class ItemModuleExtensions
 {
     public static void AddItemModule(this IServiceCollection services) 
     {
-
+        services.AddDbContext<EfItemContext>();
     }
 }

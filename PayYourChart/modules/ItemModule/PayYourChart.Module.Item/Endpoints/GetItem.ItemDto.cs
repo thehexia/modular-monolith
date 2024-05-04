@@ -1,0 +1,1 @@
+internal record class ItemDto(long Id, string ItemCode, decimal Price, string? Description);
