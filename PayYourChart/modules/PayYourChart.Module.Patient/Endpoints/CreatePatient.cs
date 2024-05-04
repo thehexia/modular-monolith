@@ -13,10 +13,10 @@ internal record class CreatePatientRequest(string FirstName, string LastName, st
 [HttpPost(ApiPath.Base)]
 [AllowAnonymous]
 [PostProcessor<CreatePatientExceptionProcessor>]
-internal class CreatePatient(IPatientService service, IPatientDtoMapperFactory mapper) : Endpoint<CreatePatientRequest, PatientDto>
+internal class CreatePatient(IPatientService service, IPatientDtoMapper mapper) : Endpoint<CreatePatientRequest, PatientDto>
 {
     readonly IPatientService _service = service;
-    readonly IPatientDtoMapperFactory _mapper = mapper;
+    readonly IPatientDtoMapper _mapper = mapper;
 
     public override async Task HandleAsync(CreatePatientRequest req, CancellationToken ct)
     {
