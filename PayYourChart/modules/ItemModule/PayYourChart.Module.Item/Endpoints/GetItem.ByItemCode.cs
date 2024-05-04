@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 
 
@@ -36,4 +37,12 @@ internal class GetItemByItemCode(IItemRepository item, IItemDtoMapperFactory map
 }
 
 
-
+internal class GetItemByItemCodeValidator : Validator<GetItemByItemCodeRequest> 
+{
+    public GetItemByItemCodeValidator() 
+    {
+        RuleFor(x => x.ItemCode)
+            .Length(5, 10)
+            .WithMessage("Item code must be between 5 and 10 characters.");
+    }
+}
