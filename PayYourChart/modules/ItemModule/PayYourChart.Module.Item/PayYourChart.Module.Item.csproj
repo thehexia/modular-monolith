@@ -12,6 +12,7 @@
     <PackageReference Include="FastEndpoints" Version="5.25.0"/>
     <PackageReference Include="FastEndpoints.Attributes" Version="5.25.0"/>
     <PackageReference Include="AutoMapper" Version="13.0.1"/>
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\shared\PayYourChart.Module.Common\PayYourChart.Module.Common.csproj"/>
