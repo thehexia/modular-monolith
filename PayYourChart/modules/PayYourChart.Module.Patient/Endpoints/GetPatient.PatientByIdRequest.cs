@@ -3,10 +3,10 @@ using FluentValidation;
 
 namespace PayYourChart.Module.Patient;
 
-internal record class PatientByIdRequest(long Id);
+internal record class GetPatientByIdRequest(long Id);
 
 // I like to place validators in the same file as the class.
-internal class PatientByIdValidator : Validator<PatientByIdRequest> 
+internal class PatientByIdValidator : Validator<GetPatientByIdRequest> 
 {
     public PatientByIdValidator() 
     {

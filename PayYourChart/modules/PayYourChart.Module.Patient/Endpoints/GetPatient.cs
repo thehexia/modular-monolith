@@ -1,22 +1,43 @@
-﻿using FastEndpoints;
+﻿using AutoMapper;
+using FastEndpoints;
 using Microsoft.AspNetCore.Authorization;
 
 namespace PayYourChart.Module.Patient;
 
 [HttpGet($"{ApiPath.Base}/{{id}}")]
 [AllowAnonymous] // Temporarily allow this for testing
-internal class GetPatient : Endpoint<PatientByIdRequest, PatientDto>
+[PostProcessor<GetPatientExceptionProcessor>]
+internal class GetPatient(IPatientRepository patient) : Endpoint<GetPatientByIdRequest, PatientDto>
 {
-    public override async Task HandleAsync(PatientByIdRequest req, CancellationToken ct)
+    // I personally think its ok to skip the service if there is no business logic.
+    readonly IPatientRepository _patient = patient;
+    readonly Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
+
+    public override async Task HandleAsync(GetPatientByIdRequest req, CancellationToken ct)
     {
-        // This is a mock for now
-        await SendAsync(new()
+        await SendAsync(mapper.Map<PatientDto>(await _patient.GetByIdAsync(req.Id)));
+    }
+}
+
+
+internal class GetPatientExceptionProcessor : IPostProcessor<GetPatientByIdRequest, PatientDto>
+{
+    public async Task PostProcessAsync(IPostProcessorContext<GetPatientByIdRequest, PatientDto> ctx, CancellationToken ct = default)
+    {
+        if (ctx.Response == null) 
         {
-            Id = req.Id,
-            FirstName = "John",
-            LastName = "Doe",
-            SSN = "123-45-6789",
-            DateOfBirth = new DateTime(2020, 1, 1)
-        });
+            await ctx.HttpContext.Response.SendAsync(
+                new InternalErrorResponse
+                {
+                    Status = "No content",
+                    Code = 204,
+                    Reason = "No patient with the matching Id was found."
+                }, 204); 
+        }
+
+        if (!ctx.HasExceptionOccurred)
+            return;
+
+        ctx.ExceptionDispatchInfo.Throw();
     }
 }

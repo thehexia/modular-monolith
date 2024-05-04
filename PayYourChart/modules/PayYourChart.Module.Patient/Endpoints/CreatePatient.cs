@@ -59,16 +59,15 @@ internal class CreatePatientExceptionProcessor : IPostProcessor<CreatePatientReq
             // Unique key violation
             if (ctx.ExceptionDispatchInfo.SourceException.InnerException?.Message.Contains("UNIQUE", StringComparison.OrdinalIgnoreCase) ?? false) 
             {
-                ctx.MarkExceptionAsHandled(); //only if handling the exception here.
-                await ctx.HttpContext.Response.SendAsync("Could not create patient. One with the SSN and DOB already exists.", 500);     
+                ctx.MarkExceptionAsHandled(); //only if handling the exception here.    
                 await ctx.HttpContext.Response.SendAsync(
                     new InternalErrorResponse
                     {
                         Status = "Conflict",
-                        Code = 403,
+                        Code = 409,
                         Reason = "Could not create patient. A patient with the SSN and DOB already exists.",
                         Note = "A patient with the SSN and DOB already exists."
-                    });      
+                    }, 409);      
                 return;
             }
         }
