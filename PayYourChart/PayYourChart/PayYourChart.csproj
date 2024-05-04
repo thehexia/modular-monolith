@@ -13,5 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\modules\PatientModule\PayYourChart.Module.Patient\PayYourChart.Module.Patient.csproj" />
+    <ProjectReference Include="..\modules\ItemModule\PayYourChart.Module.Item\PayYourChart.Module.Item.csproj" />
   </ItemGroup>
 </Project>
