@@ -11,11 +11,11 @@ internal class GetPatient(IPatientRepository patient) : Endpoint<GetPatientByIdR
 {
     // I personally think its ok to skip the service if there is no business logic.
     readonly IPatientRepository _patient = patient;
-    readonly Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
+    readonly Mapper _mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
 
     public override async Task HandleAsync(GetPatientByIdRequest req, CancellationToken ct)
     {
-        await SendAsync(mapper.Map<PatientDto>(await _patient.GetByIdAsync(req.Id)));
+        await SendAsync(_mapper.Map<PatientDto>(await _patient.GetAsync(req.Id)));
     }
 }
 

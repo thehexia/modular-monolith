@@ -6,7 +6,7 @@ namespace PayYourChart.Module.Patient;
 internal interface IPatientRepository : IEfRepositoryBase
 {
     Task<Patient> AddAsync(Patient patient);
-    Task<Patient?> GetByIdAsync(long id);
+    Task<Patient?> GetAsync(long id);
 }
 
 
@@ -18,7 +18,7 @@ internal class EfPatientRepository(EfPatientContext context) : EfRepositoryBase<
         return patient;
     }
 
-    public async Task<Patient?> GetByIdAsync(long id) 
+    public async Task<Patient?> GetAsync(long id) 
     {
         return await _context.Patient.Where(p => p.Id == id).SingleOrDefaultAsync();
     }

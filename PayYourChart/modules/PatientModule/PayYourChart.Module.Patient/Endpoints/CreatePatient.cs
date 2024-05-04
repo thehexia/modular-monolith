@@ -16,12 +16,12 @@ internal record class CreatePatientRequest(string FirstName, string LastName, st
 internal class CreatePatient(IPatientService service) : Endpoint<CreatePatientRequest, PatientDto>
 {
     readonly IPatientService _service = service;
-    readonly Mapper mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
+    readonly Mapper _mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Patient, PatientDto>()));
 
     public override async Task HandleAsync(CreatePatientRequest req, CancellationToken ct)
     {
         Patient patient = await _service.AddPatientAsync(req.FirstName, req.LastName, req.SSN, req.DateOfBirth);
-        await SendAsync(mapper.Map<PatientDto>(patient));
+        await SendAsync(_mapper.Map<PatientDto>(patient));
     }
 }
 
