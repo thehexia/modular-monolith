@@ -22,12 +22,12 @@ internal class LineItem
 
     public DateTime DateOfService { get; set; }
 
-    [MaxLength(128)]
+    [StringLength(128)]
     public required string Provider { get; set; }
 
     /// <summary>
     /// Short description of the service
     /// </summary>
-    [MaxLength(256)]
+    [StringLength(256)]
     public required string Description { get; set; }
 }

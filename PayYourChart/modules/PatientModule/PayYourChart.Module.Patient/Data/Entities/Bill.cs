@@ -10,7 +10,7 @@ internal class Bill
     
     public DateTime DueDate { get; init; }
 
-    [MaxLength(128)]
+    [StringLength(128)]
     public required string Provider { get; init; }
 
     public List<LineItem> LineItems { get; set; } = new();
