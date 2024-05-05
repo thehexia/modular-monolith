@@ -8,10 +8,10 @@ namespace PayYourChart.Module.Item;
 internal record class GetItemByIdRequest(long Id);
 
 
-internal class GetItem(IItemRepository item, IItemDtoMapperFactory mapper) : Endpoint<GetItemByIdRequest, ItemDto>
+internal class GetItem(IItemRepository item, IItemDtoMapper mapper) : Endpoint<GetItemByIdRequest, ItemDto>
 {
     readonly IItemRepository _item = item;
-    readonly IItemDtoMapperFactory _mapper = mapper;
+    readonly IItemDtoMapper _mapper = mapper;
 
     // You have to use Configure() instead of attributes if you want to do special swagger documentation
     public override void Configure()

@@ -1,9 +1,11 @@
 ﻿namespace PayYourChart.Module.Item;
 
+internal record class SpecialApprovalRequired(bool Required, string? Reason);
+
 internal interface IItemService
 {
     Task<IEnumerable<Item>> GetCardiacRehabItemsAsync();
-    Task<bool> RequiresSpecialApproval(string ItemCode);
+    Task<SpecialApprovalRequired> DoesItemRequireSpecialApproval(string itemCode);
 }
 
 
@@ -17,8 +19,14 @@ internal class ItemService(IItemRepository item) : IItemService
         return items.Where(i => i != null) as IEnumerable<Item>;
     }
 
-    public Task<bool> RequiresSpecialApproval(string ItemCode)
+    public async Task<SpecialApprovalRequired> DoesItemRequireSpecialApproval(string itemCode)
     {
-        throw new NotImplementedException();
+        Item? item = await _item.GetItemAsync(itemCode);
+        if (item?.Price >= 10000)
+        {
+            return new(true, "Item costs over $10,000");
+        }
+        
+        return new(false, null);
     }
 }
