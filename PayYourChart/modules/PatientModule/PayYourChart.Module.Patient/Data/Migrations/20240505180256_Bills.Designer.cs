@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayYourChart.Module.Patient;
 
@@ -10,9 +11,11 @@ using PayYourChart.Module.Patient;
 namespace PayYourChart.Module.Patient.Data.Migrations
 {
     [DbContext(typeof(EfPatientContext))]
-    partial class EfPatientContextModelSnapshot : ModelSnapshot
+    [Migration("20240505180256_Bills")]
+    partial class Bills
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");

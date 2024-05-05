@@ -6,6 +6,10 @@ internal class EfPatientContext : DbContext
 {
     public DbSet<Patient> Patient { get; init; }
 
+    public DbSet<Bill> Bill { get; init; }
+
+    public DbSet<LineItem> LineItem { get; init; }
+
     public string DbPath { get; }
 
     /// <summary>

@@ -1,0 +1,34 @@
+﻿using Microsoft.EntityFrameworkCore;
+using PayYourChart.Module.Common;
+
+namespace PayYourChart.Module.Patient;
+
+interface IBillRepository
+{
+    Task<Bill> AddAsync(long patientId, DateTime dueDate, string provider);
+}
+
+
+internal class EfBillRepository(EfPatientContext context) : EfRepositoryBase<EfPatientContext>(context), IBillRepository
+{
+    public async Task<Bill> AddAsync(long patientId, DateTime dueDate, string provider)
+    {
+        Patient? patient = await _context.Patient.Where(p => p.Id == patientId).SingleOrDefaultAsync();
+        if (patient != null)
+        {
+            Bill bill = new() 
+            {
+                DueDate = dueDate,
+                Provider = provider,
+            };
+
+            patient.Bills.Add(bill);
+
+            await _context.SaveChangesAsync();
+
+            return bill;
+        }
+
+        throw new InvalidOperationException($"No patient with id {patientId} could be found.");
+    }
+}

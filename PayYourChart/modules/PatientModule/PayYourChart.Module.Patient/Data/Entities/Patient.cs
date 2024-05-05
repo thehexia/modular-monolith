@@ -7,4 +7,5 @@ internal class Patient
     public required string LastName { get; init; }
     public required string SSN { get; init; }
     public DateTime? DateOfBirth { get; init; }
+    public List<Bill> Bills { get; init; } = new();
 }
