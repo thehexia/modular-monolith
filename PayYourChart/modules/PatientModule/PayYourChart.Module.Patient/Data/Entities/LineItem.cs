@@ -16,6 +16,8 @@ internal class LineItem
     /// </summary>
     public decimal Price { get; set; }
 
+    public short Quantity { get; set; } = 1;
+
     public DateTime DateOfService { get; set; }
 
     public required string Provider { get; set; }

@@ -4,7 +4,7 @@ using PayYourChart.Module.Item.Contracts;
 
 namespace PayYourChart.Module.Patient;
 
-internal record class AddItemToBillCommand(long BillId, long ItemId, string Provider, DateTime DateOfService) : IRequest<Result<LineItem>>;
+internal record class AddItemToBillCommand(long BillId, long ItemId, string Provider, DateTime DateOfService, short Quantity) : IRequest<Result<LineItem>>;
 
 internal class AddItemToBillHandler(IMediator mediator, IBillRepository bill, IPatientDtoMapper mapper) : IRequestHandler<AddItemToBillCommand, Result<LineItem>>
 {
@@ -22,6 +22,7 @@ internal class AddItemToBillHandler(IMediator mediator, IBillRepository bill, IP
             item.DateOfService = request.DateOfService;
             item.BillId = request.BillId;
             item.Provider = request.Provider;
+            item.Quantity = request.Quantity;
 
             await _bill.AddLineItemAsync(item);
 
