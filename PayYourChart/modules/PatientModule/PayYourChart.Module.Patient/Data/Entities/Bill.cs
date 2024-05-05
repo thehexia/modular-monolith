@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace PayYourChart.Module.Patient;
 
 internal class Bill
@@ -8,6 +10,7 @@ internal class Bill
     
     public DateTime DueDate { get; init; }
 
+    [MaxLength(128)]
     public required string Provider { get; init; }
 
     public List<LineItem> LineItems { get; set; } = new();
