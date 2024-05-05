@@ -3,9 +3,10 @@ using PayYourChart.Module.Common;
 
 namespace PayYourChart.Module.Patient;
 
-interface IBillRepository
+internal interface IBillRepository
 {
     Task<Bill> AddAsync(long patientId, DateTime dueDate, string provider);
+    Task AddLineItemAsync(LineItem lineItem);
 }
 
 
@@ -30,5 +31,12 @@ internal class EfBillRepository(EfPatientContext context) : EfRepositoryBase<EfP
         }
 
         throw new InvalidOperationException($"No patient with id {patientId} could be found.");
+    }
+
+
+    public async Task AddLineItemAsync(LineItem lineItem)
+    {
+        await _context.LineItem.AddAsync(lineItem);
+        await _context.SaveChangesAsync();
     }
 }

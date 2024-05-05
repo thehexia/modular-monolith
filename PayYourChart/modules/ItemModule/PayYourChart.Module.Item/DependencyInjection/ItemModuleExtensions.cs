@@ -11,6 +11,7 @@ public static partial class ItemModuleExtensions
 
         services.AddDbContext<EfItemContext>();
         services.AddScoped<IItemRepository, ItemRepository>();
+        services.AddScoped<IItemService, ItemService>();
         services.AddSingleton<IItemDtoMapper, ItemDtoMapper>();
     }
 }

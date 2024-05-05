@@ -12,6 +12,7 @@ public static partial class PatientModuleExtensions
         services.AddDbContext<EfPatientContext>();
         services.AddScoped<IPatientRepository, EfPatientRepository>();
         services.AddScoped<IPatientService, PatientService>();
+        services.AddScoped<IBillRepository, EfBillRepository>();
         services.AddSingleton<IPatientDtoMapper, PatientDtoMapper>();
     }
 }
