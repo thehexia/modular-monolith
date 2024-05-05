@@ -15,10 +15,14 @@ internal class PatientDtoMapper : IPatientDtoMapper
         { 
             cfg.CreateMap<Patient, PatientDto>(); 
             cfg.CreateMap<GetItemResponse, LineItem>()
+                .ForMember(dst => dst.Id, opts => opts.Ignore())
                 .ForMember(dst => dst.ItemCatalogId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dst => dst.Price, opts => opts.MapFrom(src => src.Price))
                 .ForMember(dst => dst.Description, opts => opts.MapFrom(src => 
                     !src.SpecialApprovalRequired ? src.Description : string.Format("{0} - Special - Reason: {1}", src.Description, src.SpecialApprovalReason)));
+
+            cfg.CreateMap<LineItem, LineItemDto>();
+            cfg.CreateMap<CollateBillResponse, BillDto>();     
         }));
     public IMapper Get() => _mapper;
 }

@@ -4,11 +4,11 @@ internal class Bill
 {
     public long Id { get; init; }
     
-    public long PatientId { get; set; }
+    public long PatientId { get; init; }
     
-    public DateTime DueDate { get; set; }
+    public DateTime DueDate { get; init; }
 
-    public required string Provider { get; set; }
+    public required string Provider { get; init; }
 
-    public List<LineItem> LineItems { get; init; } = new();
+    public List<LineItem> LineItems { get; set; } = new();
 }

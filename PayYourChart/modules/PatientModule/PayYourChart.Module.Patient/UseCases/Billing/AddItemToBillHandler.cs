@@ -25,6 +25,7 @@ internal class AddItemToBillHandler(IMediator mediator, IBillRepository bill, IP
             item.Quantity = request.Quantity;
 
             await _bill.AddLineItemAsync(item);
+            await _bill.SaveChangesAsync();
 
             return Result.Ok(item);
         }
