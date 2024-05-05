@@ -1,7 +1,8 @@
 ﻿using FastEndpoints;
 using FluentResults;
+using FluentValidation;
 using MediatR;
-using PayYourChart.Module.Item.Contracts;
+
 
 namespace PayYourChart.Module.Patient;
 
@@ -31,6 +32,21 @@ internal class AddItemToBill(IMediator mediator, TimeProvider time) : Endpoint<A
         {
             await SendErrorsAsync();
         }
+    }
+}
+
+
+internal class AddItemToBillValidator : Validator<AddItemToBillRequest> 
+{
+    public AddItemToBillValidator() 
+    {
+        RuleFor(x => x.Provider)
+            .NotEmpty()
+            .WithMessage("Provider is required.");
+        
+        RuleFor(x => (int)x.Quantity)
+            .GreaterThanOrEqualTo(1)
+            .WithMessage("Quantity must be at least 1.");
     }
 }
 
