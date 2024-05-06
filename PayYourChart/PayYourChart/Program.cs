@@ -3,6 +3,7 @@ using FastEndpoints.Swagger;
 using PayYourChart.Module.Patient;
 using PayYourChart.Module.Item;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add in auth stuff
+builder.Services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate(options => 
+    {
+        // options.On
+    });
 
 // Module registrations (you have to register the module for fastendpoints to automatically pick up any endpoints)\
 List<Assembly> mediatrAssemblies = [typeof(Program).Assembly];
@@ -28,6 +36,8 @@ builder.Services
 builder.Services.AddSingleton(TimeProvider.System);
 
 var app = builder.Build();
+
+app.UseAuthentication();
 
 app
     .UseDefaultExceptionHandler()
