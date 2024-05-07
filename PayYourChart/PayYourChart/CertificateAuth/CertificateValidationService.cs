@@ -16,7 +16,7 @@ internal class CertificateValidationService : ICertificateValidationService
     readonly X509Certificate2 expectedCertificate;
     public CertificateValidationService()
     {
-        expectedCertificate = new X509Certificate2(Path.Combine("certs/client-cert.pfx"));
+        expectedCertificate = new X509Certificate2(Path.Combine("certs/client-cert.pfx"), "password123");
     }
 
     public bool ValidateCertificate(X509Certificate2 clientCertificate)

@@ -11,24 +11,14 @@ using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Logging
+builder.Logging.ClearProviders();
+builder.Logging.AddJsonConsole();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// Cors stuff
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy("AllowAll", policy => 
-//     {
-//         policy
-//             .AllowAnyHeader()
-//             .AllowAnyMethod()
-//             .AllowAnyOrigin();
-//     });
-// });
-
 
 // Module registrations (you have to register the module for fastendpoints to automatically pick up any endpoints)\
 List<Assembly> mediatrAssemblies = [typeof(Program).Assembly];
