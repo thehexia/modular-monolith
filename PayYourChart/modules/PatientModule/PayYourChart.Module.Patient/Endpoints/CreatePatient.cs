@@ -35,13 +35,26 @@ internal class CreatePatientValidator : Validator<CreatePatientRequest>
             .NotEmpty()
             .WithMessage("First name is required.");
 
+        RuleFor(x => x.FirstName)
+            .MaximumLength(64)
+            .WithMessage("First name can only be a maximum of 64 characters.");
+
         RuleFor(x => x.LastName)
             .NotEmpty()
             .WithMessage("Last name is required.");
 
+        RuleFor(x => x.LastName)
+            .MaximumLength(64)
+            .WithMessage("Last name can only be a maximum of 64 characters.");
+
         RuleFor(x => x.SSN)
             .NotEmpty()
             .WithMessage("SSN is required.");
+
+         RuleFor(x => x.SSN)
+            .NotEmpty()
+            .Matches("^\\d{3}-\\d{2}-\\d{4}$")
+            .WithMessage("SSN must be of format XXX-XX-XXXX.");
     }
 }
 
