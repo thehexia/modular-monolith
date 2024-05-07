@@ -14,7 +14,7 @@ internal class GetBill(IMediator mediator, IPatientDtoMapper mapper) : Endpoint<
 
     public override void Configure()
     {
-        Get($"{ApiPath.Base}/patient/bill/{{billId}}");
+        Get($"{ApiPath.Base}/bill/{{billId}}");
         Policies(Common.Policies.AdminCertPolicy);
     }
 

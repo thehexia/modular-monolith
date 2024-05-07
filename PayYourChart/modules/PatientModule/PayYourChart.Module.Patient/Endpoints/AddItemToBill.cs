@@ -16,7 +16,7 @@ internal class AddItemToBill(IMediator mediator, TimeProvider time) : Endpoint<A
 
     public override void Configure()
     {
-        Post($"{ApiPath.Base}/patient/bill/item");
+        Post($"{ApiPath.Base}/bill/item");
         Policies(Common.Policies.AdminCertPolicy);
     }
 
