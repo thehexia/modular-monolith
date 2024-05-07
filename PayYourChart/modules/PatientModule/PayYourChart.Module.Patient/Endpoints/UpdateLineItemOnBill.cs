@@ -12,7 +12,7 @@ internal class UpdateLineItemOnBill(IMediator mediator) : Endpoint<UpdateLineIte
 
     public override void Configure()
     {
-        Put($"{ApiPath.Base}/patient/bill/item");
+        Put($"{ApiPath.Base}/bill/item");
         AllowAnonymous();
     }
 

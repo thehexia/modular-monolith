@@ -11,7 +11,7 @@ internal class CreateBill(IBillRepository bill) : Endpoint<CreateBillRequest, Cr
 
     public override void Configure()
     {
-        Post($"{ApiPath.Base}/patient/bill");
+        Post($"{ApiPath.Base}/bill");
         AllowAnonymous();
     }
 
