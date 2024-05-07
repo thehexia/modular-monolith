@@ -17,7 +17,7 @@ internal class GetItem(IItemRepository item, IItemDtoMapper mapper) : Endpoint<G
     public override void Configure()
     {
         Get($"{ApiPath.Base}/{{id}}");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
         Description(b => b.Produces(204));
     }
 

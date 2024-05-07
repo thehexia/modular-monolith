@@ -13,7 +13,7 @@ internal class UpdateLineItemOnBill(IMediator mediator) : Endpoint<UpdateLineIte
     public override void Configure()
     {
         Put($"{ApiPath.Base}/patient/bill/item");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
     }
 
     public override async Task HandleAsync(UpdateLineItemRequest req, CancellationToken ct)

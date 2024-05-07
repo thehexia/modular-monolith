@@ -12,7 +12,7 @@ internal class CreateBill(IBillRepository bill) : Endpoint<CreateBillRequest, Cr
     public override void Configure()
     {
         Post($"{ApiPath.Base}/patient/bill");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
     }
 
     public override async Task HandleAsync(CreateBillRequest req, CancellationToken ct)

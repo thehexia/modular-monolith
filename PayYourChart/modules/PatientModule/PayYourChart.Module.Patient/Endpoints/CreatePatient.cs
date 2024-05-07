@@ -11,7 +11,7 @@ namespace PayYourChart.Module.Patient;
 internal record class CreatePatientRequest(string FirstName, string LastName, string SSN, DateTime? DateOfBirth);
 
 [HttpPost(ApiPath.Base)]
-[AllowAnonymous]
+[Authorize(Policy = Common.Policies.AdminCertPolicy)]
 [PostProcessor<CreatePatientExceptionProcessor>]
 internal class CreatePatient(IPatientService service, IPatientDtoMapper mapper) : Endpoint<CreatePatientRequest, PatientDto>
 {

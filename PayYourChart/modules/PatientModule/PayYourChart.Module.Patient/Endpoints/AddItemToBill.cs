@@ -17,7 +17,7 @@ internal class AddItemToBill(IMediator mediator, TimeProvider time) : Endpoint<A
     public override void Configure()
     {
         Post($"{ApiPath.Base}/patient/bill/item");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
     }
 
 

@@ -15,7 +15,7 @@ internal class GetBill(IMediator mediator, IPatientDtoMapper mapper) : Endpoint<
     public override void Configure()
     {
         Get($"{ApiPath.Base}/patient/bill/{{billId}}");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
     }
 
     public override async Task HandleAsync(GetBillRequest req, CancellationToken ct)

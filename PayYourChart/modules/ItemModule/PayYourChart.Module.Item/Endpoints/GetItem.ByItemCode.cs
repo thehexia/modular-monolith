@@ -17,7 +17,7 @@ internal class GetItemByItemCode(IItemRepository item, IItemDtoMapper mapper) : 
     public override void Configure()
     {
         Get($"{ApiPath.Base}/item-code/{{itemCode}}");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
         Description(b => b.Produces(204));
     }
     
