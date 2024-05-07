@@ -5,20 +5,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-    <PackageReference Include="FastEndpoints" Version="5.25.0"/>
-    <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0"/>
-    <PackageReference Include="MediatR" Version="12.2.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="8.0.4"/>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="FastEndpoints" Version="5.25.0" />
+    <PackageReference Include="FastEndpoints.Swagger" Version="5.25.0" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Certificate" Version="8.0.4" />
+    <PackageReference Include="FastEndpoints.Security" Version="5.25.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\modules\PatientModule\PayYourChart.Module.Patient\PayYourChart.Module.Patient.csproj"/>
-    <ProjectReference Include="..\modules\ItemModule\PayYourChart.Module.Item\PayYourChart.Module.Item.csproj"/>
+    <ProjectReference Include="..\modules\PatientModule\PayYourChart.Module.Patient\PayYourChart.Module.Patient.csproj" />
+    <ProjectReference Include="..\modules\ItemModule\PayYourChart.Module.Item\PayYourChart.Module.Item.csproj" />
+    <ProjectReference Include="..\shared\PayYourChart.Module.Common\PayYourChart.Module.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="certs\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>  
+    </Content>
   </ItemGroup>
 </Project>

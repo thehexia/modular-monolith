@@ -13,7 +13,7 @@ internal class GetPatient(IPatientRepository patient, IPatientDtoMapper mapper) 
     public override void Configure()
     {
         Get($"{ApiPath.Base}/{{id}}");
-        AllowAnonymous();
+        Policies(Common.Policies.AdminCertPolicy);
         Description(b => b.Produces(204));
     }
 
