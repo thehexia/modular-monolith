@@ -4,7 +4,6 @@ internal record class SpecialApprovalRequired(bool Required, string? Reason);
 
 internal interface IItemService
 {
-    Task<IEnumerable<Item>> GetCardiacRehabItemsAsync();
     Task<SpecialApprovalRequired> DoesItemRequireSpecialApprovalAsync(string itemCode);
     SpecialApprovalRequired DoesItemRequireSpecialApproval(Item item);
 }
@@ -13,12 +12,6 @@ internal interface IItemService
 internal class ItemService(IItemRepository item) : IItemService
 {
     readonly IItemRepository _item = item;
-
-    public async Task<IEnumerable<Item>> GetCardiacRehabItemsAsync()
-    {
-        IEnumerable<Item?> items = [ await _item.GetItemAsync("93797"), await _item.GetItemAsync("93798") ];
-        return items.Where(i => i != null) as IEnumerable<Item>;
-    }
 
     public async Task<SpecialApprovalRequired> DoesItemRequireSpecialApprovalAsync(string itemCode)
     {

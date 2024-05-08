@@ -8,30 +8,27 @@ using NSubstitute.ReturnsExtensions;
 
 namespace PayYourChart.Module.Item.UnitTests;
 
-public class ItemServiceTests(TestItemsApp App)  : TestBase<TestItemsApp>
+public class ItemServiceTests(EndpointsTestFixture app)  : TestBase<EndpointsTestFixture>
 {
-    readonly TestItemsApp _sut = App;
-    readonly Fixture _fixture = new();
-    readonly ItemDtoMapper _mapper = new();
-
+    readonly EndpointsTestFixture _app = app;
 
     [Fact]
     public async void GetItemById_returns_dto_if_in_database()
     {
         // Arrange
         const long itemId = 1;
-        Item item = _fixture
+        Item item = _app.f
             .Build<Item>()
-            .With(dto => dto.Id, itemId)
+            .With(item => item.Id, itemId)
             .Create();
-        _sut._mockItemRepo.GetItemAsync(itemId).Returns(item);
+        _app.ItemRepository.GetItemAsync(itemId).Returns(item);
 
         // Act
-        TestResult<ItemDto> result = await _sut.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
+        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, result.Response.StatusCode);
-        Assert.Equal(_mapper.Get().Map<ItemDto>(item), result.Result);
+        Assert.Equal(_app.Mapper.Get().Map<ItemDto>(item), result.Result);
     }
 
 
@@ -40,10 +37,10 @@ public class ItemServiceTests(TestItemsApp App)  : TestBase<TestItemsApp>
     {
         // Arrange
         const long itemId = 1;
-        _sut._mockItemRepo.GetItemAsync(itemId).ReturnsNull();
+        _app.ItemRepository.GetItemAsync(itemId).ReturnsNull();
 
         // Act
-        TestResult<ItemDto> result = await _sut.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
+        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
 
         // Assert
         Assert.Equal(HttpStatusCode.NoContent, result.Response.StatusCode);

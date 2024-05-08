@@ -10,7 +10,7 @@ internal class GetItemByIdHandler(IItemService itemService, IItemRepository item
     readonly IItemRepository _itemRepo = itemRepo;
     readonly IItemDtoMapper _mapper = mapper;
 
-    public async Task<Result<GetItemResponse>> Handle(GetItemQuery request, CancellationToken cancellationToken)
+    public async Task<Result<GetItemResponse>> Handle(GetItemQuery request, CancellationToken cancellationToken = default)
     {
         Item? item = await _itemRepo.GetItemAsync(request.Id);
         if (item == null)
