@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "f57a5d34-ad5c-49d5-8110-cb383fcbf462",
+		"name": "Modular Monolith",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34780388"
+	},
+	"item": [
+		{
+			"name": "https://localhost:5245/api/patient/1",
+			"protocolProfileBehavior": {
+				"strictSSL": false,
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "https://localhost:5245/api/patient/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5245",
+					"path": [
+						"api",
+						"patient",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5245/api/patient",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"jack\",\n  \"lastName\": \"frost\",\n  \"ssn\": \"1234568\",\n  \"dateOfBirth\": \"2024-05-07T18:52:22.908Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5245/api/patient",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5245",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5245/api/patient/bill",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"patientId\": 11,\n  \"dueDate\": \"2024-05-07T18:54:35.596Z\",\n  \"provider\": \"dr. nguyen\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5245/api/patient/bill",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5245",
+					"path": [
+						"api",
+						"patient",
+						"bill"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5245/api/patient/bill/item",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"billId\": 3,\n  \"itemId\": 1,\n  \"provider\": \"dr.nguyen\",\n  \"quantity\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5245/api/patient/bill/item",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5245",
+					"path": [
+						"api",
+						"patient",
+						"bill",
+						"item"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:5245/api/patient/bill/3",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5245/api/patient/bill/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5245",
+					"path": [
+						"api",
+						"patient",
+						"bill",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5244/api/patient",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"i7esunkrfhikseh cfskeiurhgf ksuirehgkusedhgvikdszuhfg ksdirufh giksurdyg8iksur5htgksujirehg bksdufjgh vuiksrh guiksdhge thsikeuhg ikshgikudxfhghujk\",\n  \"lastName\": \"frost\",\n  \"ssn\": \"123-40-5689\",\n  \"dateOfBirth\": \"2024-05-07T18:52:22.908Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5244/api/patient",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5244",
+					"path": [
+						"api",
+						"patient"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
