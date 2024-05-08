@@ -40,7 +40,6 @@ builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddCertificateAuth();
 
 // Tell kestrel we need https to do cert based auth.
-var cert = new X509Certificate2("certs/server-cert.pfx");
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
     options.ConfigureHttpsDefaults(options =>
