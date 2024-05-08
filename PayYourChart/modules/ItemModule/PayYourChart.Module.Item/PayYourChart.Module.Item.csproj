@@ -19,4 +19,15 @@
     <ProjectReference Include="..\..\..\shared\PayYourChart.Module.Common\PayYourChart.Module.Common.csproj" />
     <ProjectReference Include="..\PayYourChart.Module.Item.Contract\PayYourChart.Module.Item.Contracts.csproj" />
   </ItemGroup>
+  <!-- This allows me to unit test even though all my classes are internal -->
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
 </Project>

@@ -21,6 +21,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Item", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Item.Contracts", "modules\ItemModule\PayYourChart.Module.Item.Contract\PayYourChart.Module.Item.Contracts.csproj", "{6E3FC928-CC2D-400D-8930-F090DE2E6EE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Item.UnitTests", "modules\ItemModule\PayYourChart.Module.Item.UnitTests\PayYourChart.Module.Item.UnitTests.csproj", "{42A441F8-31BC-4559-9A49-8EAF369CC3F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Tests.Common", "shared\PayYourChart.Module.Tests.Common\PayYourChart.Module.Tests.Common.csproj", "{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +51,14 @@ Global
 		{6E3FC928-CC2D-400D-8930-F090DE2E6EE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E3FC928-CC2D-400D-8930-F090DE2E6EE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E3FC928-CC2D-400D-8930-F090DE2E6EE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A441F8-31BC-4559-9A49-8EAF369CC3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A441F8-31BC-4559-9A49-8EAF369CC3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A441F8-31BC-4559-9A49-8EAF369CC3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A441F8-31BC-4559-9A49-8EAF369CC3F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,5 +70,7 @@ Global
 		{797BB894-30F6-4DFE-990E-622F53D92C7E} = {290E2809-9F4A-4C2E-9657-E202DA08CCD4}
 		{97888062-23BA-4908-8506-E3CE732F4C8E} = {797BB894-30F6-4DFE-990E-622F53D92C7E}
 		{6E3FC928-CC2D-400D-8930-F090DE2E6EE2} = {797BB894-30F6-4DFE-990E-622F53D92C7E}
+		{42A441F8-31BC-4559-9A49-8EAF369CC3F0} = {797BB894-30F6-4DFE-990E-622F53D92C7E}
+		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A} = {6BDF1C8D-04D6-4A5C-9C3F-ECF939A55BDC}
 	EndGlobalSection
 EndGlobal
