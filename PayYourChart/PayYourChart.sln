@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Item.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Tests.Common", "shared\PayYourChart.Module.Tests.Common\PayYourChart.Module.Tests.Common.csproj", "{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PayYourChart.Module.Patient.UnitTests", "modules\PatientModule\PayYourChart.Module.Patient.UnitTests\PayYourChart.Module.Patient.UnitTests.csproj", "{C24557CF-2169-42A9-BBCD-69B42763D692}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24557CF-2169-42A9-BBCD-69B42763D692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C24557CF-2169-42A9-BBCD-69B42763D692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24557CF-2169-42A9-BBCD-69B42763D692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C24557CF-2169-42A9-BBCD-69B42763D692}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +78,6 @@ Global
 		{6E3FC928-CC2D-400D-8930-F090DE2E6EE2} = {797BB894-30F6-4DFE-990E-622F53D92C7E}
 		{42A441F8-31BC-4559-9A49-8EAF369CC3F0} = {797BB894-30F6-4DFE-990E-622F53D92C7E}
 		{1C6FB6A4-A9E2-414F-A8CE-8C8F187A046A} = {6BDF1C8D-04D6-4A5C-9C3F-ECF939A55BDC}
+		{C24557CF-2169-42A9-BBCD-69B42763D692} = {A4089304-2D1D-4824-A12F-D446DD4A8269}
 	EndGlobalSection
 EndGlobal
