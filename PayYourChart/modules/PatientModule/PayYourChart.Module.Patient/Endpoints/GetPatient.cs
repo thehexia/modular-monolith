@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Http;
 
 namespace PayYourChart.Module.Patient;
 
-internal class GetPatient(IPatientRepository patient, IPatientDtoMapper mapper) : Endpoint<GetPatientByIdRequest, PatientDto>
+internal class GetPatient(IPatientRepository patientRepository, IPatientDtoMapper mapper) : Endpoint<GetPatientByIdRequest, PatientDto>
 {
     // I personally think its ok to skip the service if there is no business logic.
-    readonly IPatientRepository _patient = patient;
+    readonly IPatientRepository _patientRepository = patientRepository;
     readonly IPatientDtoMapper _mapper = mapper;
 
     // We use Configure() instead of Attributes because we want to do custom swagger docs.
@@ -18,9 +18,9 @@ internal class GetPatient(IPatientRepository patient, IPatientDtoMapper mapper) 
     }
 
 
-    public override async Task HandleAsync(GetPatientByIdRequest req, CancellationToken ct)
+    public override async Task HandleAsync(GetPatientByIdRequest req, CancellationToken ct = default)
     {
-        Patient? patient = await _patient.GetAsync(req.Id);
+        Patient? patient = await _patientRepository.GetAsync(req.Id);
         if (patient != null)
         {
             await SendAsync(_mapper.Get().Map<PatientDto>(patient));

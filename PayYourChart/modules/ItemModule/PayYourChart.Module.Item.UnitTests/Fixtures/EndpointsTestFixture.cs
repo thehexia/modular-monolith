@@ -1,10 +1,12 @@
 ﻿using AutoFixture;
+using FastEndpoints.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using PayYourChart.Module.Tests.Common;
 
 namespace PayYourChart.Module.Item.UnitTests;
 
+[DisableWafCache]
 public class EndpointsTestFixture : BaseTestApp
 {
     public readonly Fixture f = new();

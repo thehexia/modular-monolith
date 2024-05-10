@@ -24,7 +24,7 @@ public class ItemServiceTests(EndpointsTestFixture app)  : TestBase<EndpointsTes
         _app.ItemRepository.GetItemAsync(itemId).Returns(item);
 
         // Act
-        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
+        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(itemId));
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, result.Response.StatusCode);
@@ -36,11 +36,11 @@ public class ItemServiceTests(EndpointsTestFixture app)  : TestBase<EndpointsTes
     public async void GetItemById_returns_no_content_if_not_in_database()
     {
         // Arrange
-        const long itemId = 1;
+        const long itemId = 2;
         _app.ItemRepository.GetItemAsync(itemId).ReturnsNull();
 
         // Act
-        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(1));
+        TestResult<ItemDto> result = await _app.Client.GETAsync<GetItem, GetItemByIdRequest, ItemDto>(new(itemId));
 
         // Assert
         Assert.Equal(HttpStatusCode.NoContent, result.Response.StatusCode);

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace PayYourChart.Module.Tests.Common;
 
+[DisableWafCache]
 public abstract class BaseTestApp : AppFixture<Program>
 {
     protected override async Task SetupAsync()
