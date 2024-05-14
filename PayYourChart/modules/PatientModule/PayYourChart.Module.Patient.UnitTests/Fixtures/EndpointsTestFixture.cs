@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using PayYourChart.Module.Tests.Common;
 
 namespace PayYourChart.Module.Patient.UnitTests;
@@ -10,6 +11,7 @@ public class PatientsEndpointsTestFixture : BaseTestApp
     internal readonly IPatientRepository PatientRepository;
     internal readonly IBillRepository BillRepository;
     internal readonly IPatientService PatientService;
+    internal readonly IMediator Mediator;
     internal readonly IPatientDtoMapper Mapper;
 
     public PatientsEndpointsTestFixture()
@@ -17,9 +19,11 @@ public class PatientsEndpointsTestFixture : BaseTestApp
         PatientRepository = Substitute.For<IPatientRepository>();
         BillRepository = Substitute.For<IBillRepository>();
         PatientService = Substitute.For<IPatientService>();
+        Mediator = Substitute.For<IMediator>();
         Mapper = new PatientDtoMapper();
         f.Register(() => PatientRepository);
         f.Register(() => BillRepository);
+        f.Register(() => Mediator);
         f.Register(() => Mapper);
     }
     
@@ -30,5 +34,6 @@ public class PatientsEndpointsTestFixture : BaseTestApp
         services.AddScoped<IPatientRepository>((provider) => PatientRepository);
         services.AddScoped<IBillRepository>((provider) => BillRepository);
         services.AddScoped<IPatientService>((provider) => PatientService);
+        services.AddScoped<IMediator>((provider) => Mediator);
     }
 }

@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.4"/>
     <PackageReference Include="FastEndpoints.Testing" Version="5.25.0"/>
     <PackageReference Include="FluentAssertions" Version="6.12.0"/>
+    <PackageReference Include="AutoFixture" Version="4.18.1"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PayYourChart.Module.Common\PayYourChart.Module.Common.csproj"/>
